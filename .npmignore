@@ -17,3 +17,4 @@ config/
 build/
 src/
 static/
+docs/

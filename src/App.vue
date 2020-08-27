@@ -1,78 +1,62 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" />
-    <demo-block-wrapper />
+    <img src="./assets/logo.png" width="160px" />
+    <h1 style="display:inline-block; font-size: 60px;">+</h1>
+    <img src="./assets/box.png" width="160px" />
+    <div style="width:1200px; margin:0 auto;text-align:left;font-size:14px">
+      <demo-block-wrapper />
+    </div>
   </div>
 </template>
 
 <script>
 import { generateComponent } from './components'
 
-let jsResources =
-  '<scr' +
-  'ipt src="//unpkg.com/vue/dist/vue.js"></scr' +
-  'ipt>' +
-  '\n<scr' +
-  `ipt src="//unpkg.com/element-ui/lib/index.js"></scr` +
-  'ipt>' +
-  '\n<scr' +
-  `ipt src="https://rawgit.com/giscafer/vue-data-tables/dev/dist/data-tables.js"></scr` +
-  'ipt>'
+// inject main.js code
+let boxBootCode = `
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
-let cssResources =
-  '@import url("//unpkg.com/element-ui/lib/theme-chalk/index.css");'
+Vue.use(ElementUI, { size: 'small' })
+`
 
-let bootCode = 'Vue.use(DataTables)\n'
+// custom dependencies
+let boxDependencies = {
+  'element-ui': '^2.13.2',
+}
 
-let code = `
-<desc>
-  Hello \`world\`
-  * a
-  * b
+let code = `<desc>
+  el-button 基础的按钮用法
 </desc>
-
-<style>
-  .wrapper {
-    font-size: 20px;
-  }
-</style>
-
 <template>
-  <div>
-    <div class='wrapper'>
-      <div>
-        <p>author: {{author}}</p>
-        <button :style="style" class="el-button el-button--primary" @click="onClick">test</button>
-      </div>
-    </div>
-  </div>
+  <el-row>
+    <el-button>默认按钮</el-button>
+    <el-button type="primary" @click="handleClick">主要按钮</el-button>
+    <el-button type="success" @click="handleClick">成功按钮</el-button>
+    <el-button type="info" @click="handleClick">信息按钮</el-button>
+    <el-button type="warning" @click="handleClick">警告按钮</el-button>
+    <el-button type="danger" @click="handleClick">危险按钮</el-button>
+  </el-row>
 </template>
 
 <script>
   export default {
     data() {
-      return {
-        author: 'leon',
-        style: {
-          color: 'blue'
-        }
-      }
+      return {};
     },
     methods: {
-      onClick() {
-        alert('author: ' + this.globalVariable)
-        this.style.color = 'red'
-      }
-    }
-  }
+      handleClick() {
+        alert("You click the button");
+      },
+    },
+  };
 `
 
 let DemoBlockWrapper = generateComponent(
   code,
   'html',
-  jsResources,
-  cssResources,
-  bootCode
+  boxBootCode,
+  boxDependencies
 )
 
 export default {
@@ -88,8 +72,8 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+  text-align: center;
   margin-top: 60px;
 }
 </style>

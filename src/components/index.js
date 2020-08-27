@@ -10,9 +10,8 @@ export let install = function () {
 export let generateComponent = function (
   code,
   lang,
-  jsResources,
-  cssResources,
-  bootCode
+  boxBootCode,
+  boxDependencies
 ) {
   let html = striptags.fetch(code, "template");
   let style = striptags.fetch(code, "style");
@@ -21,19 +20,17 @@ export let generateComponent = function (
   let desc = (marked && marked(descOrg)) || descOrg;
   let noBootCode = code.indexOf("/*no-boot-code*/") > -1;
   if (noBootCode) {
-    bootCode = "";
+    boxBootCode = "";
   }
 
-  let allJsResources = jsResources;
-
-  let extraJsMatchStrList = code.match(/\/\*\s*jsResource\s*(.*\S)\s*\*\//);
+  /* let extraJsMatchStrList = code.match(/\/\*\s*jsResource\s*(.*\S)\s*\*\//);
   if (!!extraJsMatchStrList) {
     let jsList = extraJsMatchStrList[1].split(" ");
     for (let js of jsList) {
       allJsResources += `\n<script src="${js}"></script>`;
     }
   }
-
+ */
   let scripts = script.split("export default");
   let scriptStrOrg = `(function() {${scripts[0]} ; return ${scripts[1]}})()`;
   let scriptStr =
@@ -51,9 +48,6 @@ export let generateComponent = function (
         :code="code"
         :desc="desc"
         :lang="lang"
-        :js-resources="allJsResources"
-        :css-resources="cssResources"
-        :boot-code="bootCode"
         :no-boot-code="noBootCode"
       >
         <div class="source" slot="source">
@@ -69,13 +63,10 @@ export let generateComponent = function (
 
     data() {
       return {
-        codesandbox: { html, style, script },
+        codesandbox: { html, style, script, boxDependencies, boxBootCode },
         code,
         desc,
         lang,
-        allJsResources,
-        cssResources,
-        bootCode,
         noBootCode,
       };
     },

@@ -105,6 +105,9 @@
         background: #4db3ff;
       }
     }
+    .go {
+      cursor: pointer;
+    }
   }
 
   .highlight {
@@ -188,9 +191,9 @@ import striptags from '../util/strip-tags'
 import Prism from 'prismjs'
 import createStyle from '../util/createStyle'
 import { getParameters } from 'codesandbox/lib/api/define'
-import mainJS from './files/main'
+import genMainJSCode from './files/main'
 import indexHtml from './files/indexHtml'
-import packageJson from './files/packageJson'
+import genPackageJson from './files/packageJson'
 export default {
   name: 'demo-block',
   data() {
@@ -221,18 +224,6 @@ export default {
       type: String,
       default: '',
     },
-    jsResources: {
-      type: String,
-      default: '',
-    },
-    cssResources: {
-      type: String,
-      default: '',
-    },
-    bootCode: {
-      type: String,
-      default: '',
-    },
     scrollParentSelector: {
       type: String,
       default: '.section',
@@ -260,12 +251,18 @@ export default {
         this.scrollParent.removeEventListener('scroll', this.scrollHandler)
     },
     openOnCodeSandbox() {
-      const { script, html, style } = this.codesandbox
-      const componentCode = `<template>\n${html}\n</template>\n\n<template-script>\n${script}\n</template-script>\n\n<template-style lang="scss">\n${style}\n</template-style>\n`
+      const {
+        script,
+        html,
+        style,
+        boxDependencies = {},
+        boxBootCode = '',
+      } = this.codesandbox
+      const componentCode = `<template>\n${html}\n</template>\n\n<template-script>\n${script}\n</template-script>\n\n<template-style>\n${style}\n</template-style>\n`
       const parameters = getParameters({
         files: {
           'package.json': {
-            content: JSON.stringify(packageJson, null, 2),
+            content: genPackageJson(boxDependencies),
             isBinary: false,
           },
           'public/index.html': {
@@ -273,7 +270,7 @@ export default {
             isBinary: false,
           },
           'src/main.js': {
-            content: mainJS,
+            content: genMainJSCode(boxBootCode),
             isBinary: false,
           },
           'src/App.vue': {

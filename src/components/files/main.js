@@ -1,17 +1,17 @@
-export default `
-import Vue from 'vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-import App from './App'
+export default function genCode(injectCode = "") {
+  return `
+  import Vue from 'vue'
+  import App from './App'
+  /* inject code start*/
+  ${injectCode}
+  /* inject code end*/
+  Vue.config.productionTip = false
 
-Vue.use(ElementUI, { size: 'small' })
-
-Vue.config.productionTip = false
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: { App }
-})
-`;
+  /* eslint-disable no-new */
+  new Vue({
+    el: '#app',
+    template: '<App/>',
+    components: { App }
+  })
+  `;
+}

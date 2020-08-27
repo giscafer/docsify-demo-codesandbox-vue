@@ -8,9 +8,6 @@ const packageJson = {
   dependencies: {
     "core-js": "^3.6.5",
     vue: "^2.6.11",
-    "@sinokit/utils": "*",
-    "@sinokit/components": "*",
-    "element-ui": "^2.13.2",
   },
   devDependencies: {
     "@vue/cli-plugin-babel": "4.1.1",
@@ -42,4 +39,10 @@ const packageJson = {
   description: "Vue.js example starter project",
 };
 
-export default packageJson;
+export default function genJson(dependencies = {}) {
+  packageJson.dependencies = Object.assign(
+    packageJson.dependencies,
+    dependencies
+  );
+  return JSON.stringify(packageJson, null, 2);
+}
