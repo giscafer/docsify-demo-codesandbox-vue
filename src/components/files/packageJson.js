@@ -13,14 +13,33 @@ const packageJson = {
     "element-ui": "^2.13.2",
   },
   devDependencies: {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "babel-eslint": "^10.1.0",
+    "@vue/cli-plugin-babel": "4.1.1",
+    "@vue/cli-plugin-eslint": "4.1.1",
+    "@vue/cli-service": "4.1.1",
+    "babel-eslint": "^10.0.3",
     eslint: "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint-plugin-vue": "^6.0.1",
     "vue-template-compiler": "^2.6.11",
   },
+  eslintConfig: {
+    root: true,
+    env: {
+      node: true,
+    },
+    extends: ["plugin:vue/essential", "eslint:recommended"],
+    rules: {},
+    parserOptions: {
+      parser: "babel-eslint",
+    },
+  },
+  postcss: {
+    plugins: {
+      autoprefixer: {},
+    },
+  },
+  browserslist: ["> 1%", "last 2 versions", "not ie <= 8"],
+  keywords: ["vue", "vuejs", "starter"],
+  description: "Vue.js example starter project",
 };
 
 export default packageJson;

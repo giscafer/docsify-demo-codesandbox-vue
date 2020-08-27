@@ -871,7 +871,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           html = _codesandbox.html,
           style = _codesandbox.style;
 
-      var componentCode = '<template>\n' + html + '\n</template>\n<template-script>\n' + script + '\n</template-script>\n<template-style lang="scss">\n' + style + '\n</template-style>\n';
+      var componentCode = '<template>\n' + html + '\n</template>\n\n<template-script>\n' + script + '\n</template-script>\n\n<template-style lang="scss">\n' + style + '\n</template-style>\n';
       var parameters = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_codesandbox_lib_api_define__["getParameters"])({
         files: {
           'package.json': {
@@ -1002,14 +1002,33 @@ var packageJson = {
     "element-ui": "^2.13.2"
   },
   devDependencies: {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "babel-eslint": "^10.1.0",
+    "@vue/cli-plugin-babel": "4.1.1",
+    "@vue/cli-plugin-eslint": "4.1.1",
+    "@vue/cli-service": "4.1.1",
+    "babel-eslint": "^10.0.3",
     eslint: "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint-plugin-vue": "^6.0.1",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  eslintConfig: {
+    root: true,
+    env: {
+      node: true
+    },
+    extends: ["plugin:vue/essential", "eslint:recommended"],
+    rules: {},
+    parserOptions: {
+      parser: "babel-eslint"
+    }
+  },
+  postcss: {
+    plugins: {
+      autoprefixer: {}
+    }
+  },
+  browserslist: ["> 1%", "last 2 versions", "not ie <= 8"],
+  keywords: ["vue", "vuejs", "starter"],
+  description: "Vue.js example starter project"
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (packageJson);

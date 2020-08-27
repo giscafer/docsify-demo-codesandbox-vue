@@ -261,7 +261,7 @@ export default {
     },
     openOnCodeSandbox() {
       const { script, html, style } = this.codesandbox
-      const componentCode = `<template>\n${html}\n</template>\n<template-script>\n${script}\n</template-script>\n<template-style lang="scss">\n${style}\n</template-style>\n`
+      const componentCode = `<template>\n${html}\n</template>\n\n<template-script>\n${script}\n</template-script>\n\n<template-style lang="scss">\n${style}\n</template-style>\n`
       const parameters = getParameters({
         files: {
           'package.json': {
