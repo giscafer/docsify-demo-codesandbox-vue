@@ -1,20 +1,18 @@
-# docsify-demo-box-vue
+# docsify-demo-codesandbox-vue
 
-> write Vue demo in docsify with instant preview and `jsfiddle` integration
-
+> write Vue demo in docsify with instant preview and `codesandbox` integration
 
 Your sample code can be rendered on the page instantly, so the people who read your document can see the preview immediately.
+
 If he/she expands the demo box, the source code and description are shown there.
-Click the button `Try in Jsfiddle`, `jsfiddle.net` will be open with the code of this sample.
+Click the button `Try in CodeSandbox`, `codesandbox.io` will be open with the code of this sample.
 
-[Doc](https://njleonzhang.github.io/docsify-demo-box-vue/)
+[Doc](https://giscafer.github.io/docsify-demo-codesandbox-vue/)
 
-This plugin is for Vue. For React, please use [docsify-demo-box-react](https://njleonzhang.github.io/docsify-demo-box-react)
+## Who use?
 
-## Showcase
+- [sinokit](https://github.com/giscafer/sinokit) Vue.js 2.x Component library
 
-These projects are using `docsify-demo-box-vue`. Pull requests welcome :blush:
+## Other
 
-| Project | Description |
-|---|---|
-| [vue-data-tables](https://github.com/njleonzhang/vue-data-tables/) | A simple and customizable data table，based on vue2 and element-ui. |
+Fork from [docsify-demo-codesandbox-vue](https://github.com/giscafer/docsify-demo-codesandbox-vue) and modified,use CodeSandbox instead of Jsfiddle

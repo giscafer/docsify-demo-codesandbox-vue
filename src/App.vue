@@ -1,18 +1,26 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <demo-block-wrapper/>
+    <img src="./assets/logo.png" />
+    <demo-block-wrapper />
   </div>
 </template>
 
 <script>
 import { generateComponent } from './components'
 
-let jsResources = '<scr' + 'ipt src="//unpkg.com/vue/dist/vue.js"></scr' + 'ipt>'
-  + '\n<scr' + `ipt src="//unpkg.com/element-ui/lib/index.js"></scr` + 'ipt>'
-  + '\n<scr' + `ipt src="https://rawgit.com/njleonzhang/vue-data-tables/dev/dist/data-tables.js"></scr` + 'ipt>'
+let jsResources =
+  '<scr' +
+  'ipt src="//unpkg.com/vue/dist/vue.js"></scr' +
+  'ipt>' +
+  '\n<scr' +
+  `ipt src="//unpkg.com/element-ui/lib/index.js"></scr` +
+  'ipt>' +
+  '\n<scr' +
+  `ipt src="https://rawgit.com/giscafer/vue-data-tables/dev/dist/data-tables.js"></scr` +
+  'ipt>'
 
-let cssResources = '@import url("//unpkg.com/element-ui/lib/theme-default/index.css");'
+let cssResources =
+  '@import url("//unpkg.com/element-ui/lib/theme-chalk/index.css");'
 
 let bootCode = 'Vue.use(DataTables)\n'
 
@@ -34,7 +42,7 @@ let code = `
     <div class='wrapper'>
       <div>
         <p>author: {{author}}</p>
-        <button :style="style" @click="onClick">test</button>
+        <button :style="style" class="el-button el-button--primary" @click="onClick">test</button>
       </div>
     </div>
   </div>
@@ -59,14 +67,19 @@ let code = `
   }
 `
 
-
-let DemoBlockWrapper = generateComponent(code, 'html', jsResources, cssResources, bootCode)
+let DemoBlockWrapper = generateComponent(
+  code,
+  'html',
+  jsResources,
+  cssResources,
+  bootCode
+)
 
 export default {
   name: 'app',
   components: {
-    DemoBlockWrapper
-  }
+    DemoBlockWrapper,
+  },
 }
 </script>
 

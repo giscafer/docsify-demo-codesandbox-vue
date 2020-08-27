@@ -11,4 +11,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 
-docs/docsify-demo-box-vue.js
+docs/docsify-demo-codesandbox-vue.js

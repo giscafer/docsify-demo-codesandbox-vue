@@ -1,58 +1,58 @@
-var path = require('path')
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('../config')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-var UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
+var path = require("path");
+var utils = require("./utils");
+var webpack = require("webpack");
+var config = require("../config");
+var merge = require("webpack-merge");
+var baseWebpackConfig = require("./webpack.base.conf");
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
+var UnminifiedWebpackPlugin = require("unminified-webpack-plugin");
 
-var env = config.build.env
+var env = config.build.env;
 
 var webpackConfig = merge(baseWebpackConfig, {
   entry: {
-    app: './src/components/index.js'
+    app: "./src/components/index.js",
   },
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
-      extract: true
-    })
+      extract: true,
+    }),
   },
-  devtool: config.build.productionSourceMap ? '#source-map' : false,
+  devtool: config.build.productionSourceMap ? "#source-map" : false,
   output: {
     path: config.build.assetsRoot,
-    filename: 'docsify-demo-box-vue.min.js',
-    library: 'DemoBoxVue',
-    libraryTarget: 'umd'
+    filename: "docsify-demo-codesandbox-vue.min.js",
+    library: "DemoBoxVue",
+    libraryTarget: "umd",
   },
   externals: {
     vue: {
-      root: 'Vue',
-      commonjs: 'vue',
-      commonjs2: 'vue',
-      amd: 'vue'
+      root: "Vue",
+      commonjs: "vue",
+      commonjs2: "vue",
+      amd: "vue",
     },
-    prismjs: 'Prism',
-    marked: 'marked'
+    prismjs: "Prism",
+    marked: "marked",
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env
+      "process.env": env,
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
+        warnings: false,
       },
-      sourceMap: true
+      sourceMap: true,
     }),
     new UnminifiedWebpackPlugin({
-      postfix: ''
-    })
-  ]
-})
+      postfix: "",
+    }),
+  ],
+});
 
-module.exports = webpackConfig
+module.exports = webpackConfig;

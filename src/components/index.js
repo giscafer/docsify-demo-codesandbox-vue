@@ -1,47 +1,53 @@
-import Vue from 'vue'
-import striptags from '../util/strip-tags'
-import DemoBlock from './demo-block'
-import marked from 'marked'
+import Vue from "vue";
+import striptags from "../util/strip-tags";
+import DemoBlock from "./demo-block";
+import marked from "marked";
 
-export let install = function() {
-  Vue.component(DemoBlock.name, DemoBlock)
-}
+export let install = function () {
+  Vue.component(DemoBlock.name, DemoBlock);
+};
 
-export let generateComponent = function(code, lang, jsResources, cssResources, bootCode) {
-  let html = striptags.fetch(code, 'template')
-  let style = striptags.fetch(code, 'style')
-  let script = striptags.fetch(code, 'script')
-  let descOrg = striptags.fetch(code, 'desc')
-  let desc = marked && marked(descOrg) || descOrg
-  let noBootCode = code.indexOf('/*no-boot-code*/') > -1
+export let generateComponent = function (
+  code,
+  lang,
+  jsResources,
+  cssResources,
+  bootCode
+) {
+  let html = striptags.fetch(code, "template");
+  let style = striptags.fetch(code, "style");
+  let script = striptags.fetch(code, "script");
+  let descOrg = striptags.fetch(code, "desc");
+  let desc = (marked && marked(descOrg)) || descOrg;
+  let noBootCode = code.indexOf("/*no-boot-code*/") > -1;
   if (noBootCode) {
-    bootCode = ""
+    bootCode = "";
   }
 
-  let allJsResources = jsResources
+  let allJsResources = jsResources;
 
-  let extraJsMatchStrList = code.match(/\/\*\s*jsResource\s*(.*\S)\s*\*\//)
+  let extraJsMatchStrList = code.match(/\/\*\s*jsResource\s*(.*\S)\s*\*\//);
   if (!!extraJsMatchStrList) {
-    let jsList = extraJsMatchStrList[1].split(' ')
-    for(let js of jsList) {
-      allJsResources += `\n<script src="${js}"></script>`
+    let jsList = extraJsMatchStrList[1].split(" ");
+    for (let js of jsList) {
+      allJsResources += `\n<script src="${js}"></script>`;
     }
   }
 
-  let scripts = script.split('export default')
-  let scriptStrOrg = `(function() {${scripts[0]} ; return ${scripts[1]}})()`
-  let scriptStr = Babel && Babel.transform(scriptStrOrg, { presets: ['es2015'] }).code || scriptStrOrg
-  let scriptObj = eval(scriptStr)
+  let scripts = script.split("export default");
+  let scriptStrOrg = `(function() {${scripts[0]} ; return ${scripts[1]}})()`;
+  let scriptStr =
+    (Babel && Babel.transform(scriptStrOrg, { presets: ["es2015"] }).code) ||
+    scriptStrOrg;
+  let scriptObj = eval(scriptStr);
 
-  scriptObj.template = html
-  scriptObj.style = style
-
-  let jsfiddleStr = JSON.stringify({html, style, script})
+  scriptObj.template = html;
+  scriptObj.style = style;
 
   return {
     template: `
       <demo-block class="demo-box"
-        :jsfiddle="jsfiddle"
+        :codesandbox="codesandbox"
         :code="code"
         :desc="desc"
         :lang="lang"
@@ -58,20 +64,20 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
 
     components: {
       DemoBlock,
-      MyCode: scriptObj
+      MyCode: scriptObj,
     },
 
     data() {
       return {
-        jsfiddle: {html, style, script},
+        codesandbox: { html, style, script },
         code,
         desc,
         lang,
         allJsResources,
         cssResources,
         bootCode,
-        noBootCode
-      }
-    }
-  }
-}
+        noBootCode,
+      };
+    },
+  };
+};
