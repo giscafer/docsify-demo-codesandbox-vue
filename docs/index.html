@@ -8,21 +8,24 @@
       name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
-    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/docsify/lib/themes/vue.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="app"></div>
   </body>
-  <script src="//unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
-  <script src="//unpkg.com/docsify-demo-codesandbox-vue/dist/docsify-demo-codesandbox-vue.min.js"></script>
+  <link rel="stylesheet" href="//unpkg.com/docsify@latest/lib/themes/vue.css" />
+  <script src="https://unpkg.com/docsify-demo-codesandbox-vue@1.0.0/dist/docsify-demo-codesandbox-vue.js"></script>
   <script>
     var jsResources =
-      "<scr" + 'ipt src="//unpkg.com/vue/dist/vue.js"></scr' + "ipt>";
+      "<scr" + 'ipt src="https://unpkg.com/vue/dist/vue.js"></scr' + "ipt>";
     var cssResources =
-      '@import url("//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css");';
+      '@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css");';
     var bootCode = 'var globalVariable = "leon"';
     var globalVariable = "leon";
 
@@ -33,5 +36,5 @@
       plugins: [DemoBoxVue.create(jsResources, cssResources, bootCode)],
     };
   </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="https://unpkg.com/docsify/lib/docsify.min.js"></script>
 </html>

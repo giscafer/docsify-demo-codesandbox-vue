@@ -1,6 +1,6 @@
 {
-  "name": "docsify-demo-codesandbox-vuee",
-  "version": "1.0.0",
+  "name": "docsify-demo-codesandbox-vue",
+  "version": "1.0.1",
   "description": "Write Vue demo in docsify with instant preview and codesandbox integration",
   "author": "giscafer <giscafer@outlook.com>",
   "scripts": {
