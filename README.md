@@ -15,4 +15,4 @@ Click the button `Try in CodeSandbox`, `codesandbox.io` will be open with the co
 
 ## Other
 
-Fork from [docsify-demo-codesandbox-vue](https://github.com/giscafer/docsify-demo-codesandbox-vue) and modified,use CodeSandbox instead of Jsfiddle
+Fork from [docsify-demo-box-vue](https://github.com/njleonzhang/docsify-demo-box-vue) and modified,use CodeSandbox instead of Jsfiddle
