@@ -27,18 +27,23 @@
   <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   <script src="https://unpkg.com/docsify-demo-codesandbox-vue@latest/dist/docsify-demo-codesandbox-vue.min.js"></script>
   <script>
-    var jsResources =
-      "<scr" + 'ipt src="https://unpkg.com/vue/dist/vue.js"></scr' + "ipt>";
-    var cssResources =
-      '@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css");';
-    var bootCode = 'var globalVariable = "leon"';
-    var globalVariable = "leon";
+    // inject main.js code
+    let boxBootCode = `
+      import ElementUI from 'element-ui'
+      import 'element-ui/lib/theme-chalk/index.css'
+
+      Vue.use(ElementUI, { size: 'small' })
+      `;
+    // custom dependencies
+    let boxDependencies = {
+      "element-ui": "^2.13.2",
+    };
 
     window.$docsify = {
       name: "docsify-demo-codesandbox-vue",
       repo: "https://github.com/giscafer/docsify-demo-codesandbox-vue",
       markdown: { breaks: true },
-      plugins: [DemoBoxVue.create(jsResources, cssResources, bootCode)],
+      plugins: [DemoBoxVue.create(boxBootCode, boxDependencies)],
     };
   </script>
   <script src="https://unpkg.com/docsify/lib/docsify.min.js"></script>
